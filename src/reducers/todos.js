@@ -25,7 +25,7 @@ const todo = (state, action) => {
         }
         case "toggleTodo":{
             if(state.id !== action.id){
-                return;
+                return state;
             }
             return {
                 ...state,

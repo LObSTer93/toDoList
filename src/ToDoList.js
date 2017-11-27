@@ -9,28 +9,43 @@ class ToDoList extends React.Component{
     constructor(props) {
         super(props);
         this.id=0;
+        this.saveInput = this.saveInput.bind(this);
+        this.addTodo = this.addTodo.bind(this);
+    }
+
+    renderList(){
+        const { todos, toggleTodo } = this.props;
+        return (todos.map(todo => {
+            return (
+                <li
+                        key={todo.id}
+                        onClick={() => toggleTodo(todo.id)}
+                        style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>
+                    {todo.text}
+                </li>
+            )
+        }))
+    }
+
+    addTodo(){
+        const { addTodo } = this.props;
+        addTodo(this.id++, this.input.value);
+        this.input.value = '';
+    }
+
+    saveInput(input){
+        this.input = input;
     }
 
     render(){
-        const { addTodo } = this.props;
         return (
             <div>
-                <input ref={ node => {
-                    this.input = node;
-                }}/>
-                <button onClick={() => {
-                    addTodo(this.id++, this.input.value);
-                    this.input.value = '';
-                }
-                }>
+                <input ref={this.saveInput}/>
+                <button onClick={this.addTodo}>
                     Add todo
                 </button>
                 <ul>
-                    {this.props.todos.map(todo =>
-                        <li key={todo.id}>
-                            {todo.text}
-                        </li>
-                    )}
+                    {this.renderList()}
                 </ul>
             </div>
         );
@@ -39,7 +54,8 @@ class ToDoList extends React.Component{
 
 ToDoList.propTypes = {
     todos: PropTypes.array,
-    addTodo: PropTypes.func
+    addTodo: PropTypes.func,
+    toggleTodo: PropTypes.func
 };
 
 const mapStateToProps = state => {
@@ -52,6 +68,9 @@ const mapDispatchToProps = dispatch => {
     return {
         addTodo: (id, value) => {
             dispatch(actions.addTodo(id, value))
+        },
+        toggleTodo: (id) => {
+            dispatch(actions.toggleTodo(id))
         }
     }
 };
