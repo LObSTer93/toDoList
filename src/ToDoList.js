@@ -12,10 +12,16 @@ class ToDoList extends React.Component{
     }
 
     render(){
+        const { addTodo } = this.props;
         return (
             <div>
-                <button onClick={
-                    () => this.props.dispatch(actions.addTodo(this.id++, "Test"))
+                <input ref={ node => {
+                    this.input = node;
+                }}/>
+                <button onClick={() => {
+                    addTodo(this.id++, this.input.value);
+                    this.input.value = '';
+                }
                 }>
                     Add todo
                 </button>
@@ -32,8 +38,22 @@ class ToDoList extends React.Component{
 }
 
 ToDoList.propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    todos: PropTypes.array.isRequired
+    todos: PropTypes.array,
+    addTodo: PropTypes.func
 };
 
-export default connect()(ToDoList)
+const mapStateToProps = state => {
+    return {
+        todos: state.todos
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addTodo: (id, value) => {
+            dispatch(actions.addTodo(id, value))
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDoList)

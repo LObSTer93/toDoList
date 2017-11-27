@@ -10,7 +10,7 @@ const store = createStore(reducers);
 const render = () => {
     ReactDOM.render(
         <Provider store={store}>
-            <ToDoList todos={store.getState().todos}/>
+            <ToDoList/>
         </Provider>,
         document.getElementById('root')
     );
