@@ -12,3 +12,10 @@ export function toggleTodo(id){
         id
     }
 }
+
+export function setVisibilityFilter(filter){
+    return {
+        type: "setVisibilityFilter",
+        filter
+    }
+}
