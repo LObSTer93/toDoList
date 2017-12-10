@@ -1,9 +1,8 @@
 import React from "react";
 
 import VisibilityFilterLink from "./VisibilityFilterLink";
-import {connect} from "react-redux";
 
-class Footer extends React.Component{
+export default class Footer extends React.Component{
 
     render(){
         return (
@@ -16,5 +15,3 @@ class Footer extends React.Component{
         )
     }
 }
-
-export default connect()(Footer)

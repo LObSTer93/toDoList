@@ -7,13 +7,10 @@ import ToDoListApp from "./ToDoListApp"
 import reducers from "./reducers/reducers"
 
 const store = createStore(reducers);
-const render = () => {
-    ReactDOM.render(
-        <Provider store={store}>
-            <ToDoListApp/>
-        </Provider>,
-        document.getElementById('root')
-    );
-};
-render();
-store.subscribe(render);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <ToDoListApp/>
+    </Provider>,
+    document.getElementById('root')
+);

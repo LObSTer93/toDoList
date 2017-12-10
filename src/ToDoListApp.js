@@ -1,11 +1,10 @@
 import React from "react";
-import { connect } from "react-redux";
 
-import ToDoList from "./ToDoList";
+import ToDoList from "./toDoList/ToDoList";
 import AddToDo from "./AddToDo";
-import Footer from "./Footer"
+import Footer from "./footer/Footer"
 
-class ToDoListApp extends React.Component{
+export default class ToDoListApp extends React.Component{
 
     render(){
         return (
@@ -17,5 +16,3 @@ class ToDoListApp extends React.Component{
         );
     }
 }
-
-export default connect()(ToDoListApp)
