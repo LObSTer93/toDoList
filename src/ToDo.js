@@ -5,11 +5,21 @@ import * as actions from "./actions";
 
 class ToDo extends React.Component{
 
+    constructor(props){
+        super(props);
+        this.handleOnClick = this.handleOnClick.bind(this);
+    }
+
+    handleOnClick(){
+        const { toggleTodo } = this.props;
+        return toggleTodo();
+    }
+
     render() {
-        const {toggleTodo, todo} = this.props;
+        const {todo} = this.props;
         return (
             <li key={todo.id}
-                onClick={() => toggleTodo(todo.id)}
+                onClick={this.handleOnClick}
                 style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>
                 {todo.text}
             </li>
@@ -22,10 +32,10 @@ ToDo.propTypes = {
     todo: PropTypes.object
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps)  => {
     return {
-        toggleTodo: (id) => {
-            dispatch(actions.toggleTodo(id))
+        toggleTodo: () => {
+            dispatch(actions.toggleTodo(ownProps.todo.id))
         }
     }
 };

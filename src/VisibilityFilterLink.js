@@ -6,16 +6,16 @@ import * as actions from "./actions";
 class VisibilityFilterLink extends React.Component{
 
     render(){
-        const { setVisibilityFilter, chosenFilter, displayedFilter, text } = this.props;
-        if(chosenFilter === displayedFilter){
+        const { setVisibilityFilter, isActive, text } = this.props;
+        if(isActive){
             return (
-                <span onClick={() => setVisibilityFilter(displayedFilter)}>
+                <span onClick={() => setVisibilityFilter()}>
                     {text}
                 </span>
             )
         }
         return (
-            <a href='#' onClick={() => setVisibilityFilter(displayedFilter)}>
+            <a href='#' onClick={() => setVisibilityFilter()}>
                 {text}
             </a>
         )
@@ -24,21 +24,21 @@ class VisibilityFilterLink extends React.Component{
 
 VisibilityFilterLink.propTypes = {
     setVisibilityFilter: PropTypes.func,
-    chosenFilter: PropTypes.string,
+    isActive: PropTypes.bool,
     displayedFilter: PropTypes.string,
     text: PropTypes.string
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        chosenFilter: state.visibilityFilter
+        isActive: state.visibilityFilter === ownProps.displayedFilter
     }
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        setVisibilityFilter: filter => {
-            dispatch(actions.setVisibilityFilter(filter))
+        setVisibilityFilter: () => {
+            dispatch(actions.setVisibilityFilter(ownProps.displayedFilter))
         }
     }
 };
