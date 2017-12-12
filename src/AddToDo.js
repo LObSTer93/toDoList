@@ -8,14 +8,13 @@ class AddToDo extends React.Component{
 
     constructor(props) {
         super(props);
-        this.id=0;
         this.saveInput = this.saveInput.bind(this);
         this.addTodo = this.addTodo.bind(this);
     }
 
     addTodo(){
         const { addTodo } = this.props;
-        addTodo(this.id++, this.input.value);
+        addTodo(this.input.value);
         this.input.value = '';
     }
 
@@ -41,8 +40,8 @@ AddToDo.propTypes = {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addTodo: (id, value) => {
-            dispatch(actions.addTodo(id, value))
+        addTodo: (value) => {
+            dispatch(actions.addTodo(value))
         }
     }
 };

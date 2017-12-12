@@ -1,7 +1,9 @@
-export function addTodo(id, text){
+let id = 0;
+
+export function addTodo(text){
     return {
         type: "addTodo",
-        id,
+        id: id++,
         text
     }
 }
