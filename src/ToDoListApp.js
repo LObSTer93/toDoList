@@ -1,8 +1,8 @@
 import React from "react";
 
-import ToDoList from "./ToDoList";
+import ToDoList from "./toDoList/ToDoList";
 import AddToDo from "./AddToDo";
-import Footer from "./Footer"
+import Footer from "./footer/Footer"
 
 export default () => {
     return (
