@@ -40,7 +40,7 @@ AddToDo.propTypes = {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addTodo: (value) => {
+        addTodo(value) {
             dispatch(actions.addTodo(value))
         }
     }

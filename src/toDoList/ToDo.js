@@ -34,7 +34,7 @@ ToDo.propTypes = {
 
 const mapDispatchToProps = (dispatch, ownProps)  => {
     return {
-        toggleTodo: () => {
+        toggleTodo () {
             dispatch(actions.toggleTodo(ownProps.todo.id))
         }
     }
