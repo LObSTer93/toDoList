@@ -37,9 +37,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        setVisibilityFilter() {
-            dispatch(actions.setVisibilityFilter(ownProps.displayedFilter))
-        }
+        setVisibilityFilter: () => dispatch(actions.setVisibilityFilter(ownProps.displayedFilter))
     }
 };
 

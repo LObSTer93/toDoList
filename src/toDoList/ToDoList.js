@@ -34,7 +34,7 @@ class ToDoList extends React.Component{
             <ul>
                 {todos
                     .filter(this.filterTodos)
-                    .map(todo => <ToDo todo={todo}/>)
+                    .map(todo => <ToDo key={todo.id} todo={todo}/>)
                 }
             </ul>
         )
