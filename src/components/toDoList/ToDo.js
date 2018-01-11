@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import * as actions from "../actions";
+import * as actions from "../../actions";
 
 class ToDo extends React.Component{
 
