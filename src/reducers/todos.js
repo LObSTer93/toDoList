@@ -9,6 +9,9 @@ export default (state = [], action) => {
         case "toggleTodo":{
             return state.map(t => todo(t, action))
         }
+        case "clearList":{
+            return [];
+        }
         default:
             return state;
     }

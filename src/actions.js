@@ -15,3 +15,7 @@ export const setVisibilityFilter = filter => ({
     type: "setVisibilityFilter",
     filter
 });
+
+export const clearList = () => ({
+    type: "clearList",
+});
