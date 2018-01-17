@@ -5,7 +5,7 @@ import AddToDo from "./AddToDo";
 import Footer from "./footer/Footer"
 import ClearCash from "./ClearCash";
 
-export default () => {
+export default (params) => {
     return (
         <table>
             <tbody>
@@ -19,7 +19,7 @@ export default () => {
                 </tr>
                 <tr>
                     <td>
-                        <ToDoList/>
+                        <ToDoList filter={params.match.params.filter || 'all'}/>
                         <Footer/>
                     </td>
                 </tr>

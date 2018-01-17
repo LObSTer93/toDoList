@@ -6,9 +6,17 @@ export default () => {
     return (
         <p>
             Show:{' '}
-            <VisibilityFilterLink displayedFilter={"ALL"} text={"All "}/>
-            <VisibilityFilterLink displayedFilter={"COMPLETED"} text={"Completed "}/>
-            <VisibilityFilterLink displayedFilter={"ACTIVE"} text={"Active "}/>
+            <VisibilityFilterLink filter={"all"}>
+                All
+            </VisibilityFilterLink>
+            {', '}
+            <VisibilityFilterLink filter={"completed"}>
+                Completed
+            </VisibilityFilterLink>
+            {', '}
+            <VisibilityFilterLink filter={"active"}>
+                Active
+            </VisibilityFilterLink>
         </p>
     )
 }

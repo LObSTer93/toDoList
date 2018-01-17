@@ -11,11 +11,6 @@ export const toggleTodo = id => ({
     id
 });
 
-export const setVisibilityFilter = filter => ({
-    type: "setVisibilityFilter",
-    filter
-});
-
 export const clearList = () => ({
     type: "clearList",
 });

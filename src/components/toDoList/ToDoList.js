@@ -6,51 +6,39 @@ import ToDo from "./ToDo";
 
 class ToDoList extends React.Component{
 
-    constructor(props) {
-        super(props);
-        this.filterTodos = this.filterTodos.bind(this);
-    }
-
-    filterTodos(todo){
-        const { visibilityFilter } = this.props;
-        switch(visibilityFilter){
-            case "ALL":{
-                return true;
-            }
-            case "COMPLETED":{
-                return todo.completed
-            }
-            case "ACTIVE":{
-                return !todo.completed
-            }
-            default:
-                return true;
-        }
-    }
-
     render(){
-        const { todos } = this.props;
+        const { getVisibleTodos } = this.props;
         return (
             <ul>
-                {todos
-                    .filter(this.filterTodos)
-                    .map(todo => <ToDo key={todo.id} todo={todo}/>)
-                }
+                {getVisibleTodos().map(todo => <ToDo key={todo.id} todo={todo}/>)}
             </ul>
         )
     }
 }
 
 ToDoList.propTypes = {
-    todos: PropTypes.array,
-    visibilityFilter: PropTypes.string
+    getVisibleTodos: PropTypes.func
 };
 
-const mapStateToProps = state => {
-    const {todos, visibilityFilter} = state;
+const mapStateToProps = (state, ownProps) => {
+    const todos = state.todos;
+    const getVisibleTodos = () => {
+        switch(ownProps.filter){
+            case "all":{
+                return todos;
+            }
+            case "completed":{
+                return todos.filter(todo => todo.completed);
+            }
+            case "active":{
+                return todos.filter(todo => !todo.completed);
+            }
+            default:
+                return todos;
+        }
+    };
     return {
-        todos,
-        visibilityFilter: visibilityFilter
+        getVisibleTodos
     }
 };
 
