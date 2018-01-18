@@ -23,10 +23,8 @@ ClearCash.propTypes = {
     clearList: PropTypes.func,
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        clearList: () => dispatch(actions.clearList())
-    }
-};
+const mapDispatchToProps = dispatch => ({
+    clearList: () => dispatch(actions.clearList())
+});
 
 export default connect(null, mapDispatchToProps)(ClearCash)

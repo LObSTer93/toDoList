@@ -32,10 +32,8 @@ ToDo.propTypes = {
     todo: PropTypes.object
 };
 
-const mapDispatchToProps = (dispatch, ownProps)  => {
-    return {
-        toggleTodo: () => dispatch(actions.toggleTodo(ownProps.todo.id))
-    }
-};
+const mapDispatchToProps = (dispatch, ownProps)  => ({
+    toggleTodo: () => dispatch(actions.toggleTodo(ownProps.todo.id))
+});
 
 export default connect(null, mapDispatchToProps)(ToDo)

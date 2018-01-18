@@ -38,10 +38,7 @@ AddToDo.propTypes = {
     addTodo: PropTypes.func,
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        addTodo: value => dispatch(actions.addTodo(value))
-    }
-};
-
-export default connect(null, mapDispatchToProps)(AddToDo)
+export default connect(
+        null,
+        {addTodo: actions.addTodo}
+    )(AddToDo)
