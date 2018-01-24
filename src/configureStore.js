@@ -7,11 +7,11 @@ const addLoggingToDispatch = store => {
     const rawDispatch = store.dispatch;
     return action => {
         console.group(action.type);
-        console.log("prevState: " + store.getState());
-        console.log("action: " + action);
+        console.log("prevState", store.getState());
+        console.log("action", action);
         const returnValue = rawDispatch(action);
-        console.log("nextState: " + store.getState());
-        console.groupEnd(action.type);
+        console.log("nextState", store.getState());
+        console.groupEnd();
         return returnValue;
     }
 };
