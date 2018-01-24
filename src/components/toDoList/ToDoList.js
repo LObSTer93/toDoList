@@ -4,42 +4,28 @@ import {connect} from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import ToDo from "./ToDo";
+import {getVisibleTodos} from "../../reducers/reducers";
 
 class ToDoList extends React.Component{
 
     render(){
-        const { getVisibleTodos } = this.props;
+        const { visibleTodos } = this.props;
         return (
             <ul>
-                {getVisibleTodos().map(todo => <ToDo key={todo.id} todo={todo}/>)}
+                {visibleTodos.map(todo => <ToDo key={todo.id} todo={todo}/>)}
             </ul>
         )
     }
 }
 
 ToDoList.propTypes = {
-    getVisibleTodos: PropTypes.func
+    visibleTodos: PropTypes.array
 };
 
 const mapStateToProps = (state, {match}) => {
-    const todos = state.todos;
-    const getVisibleTodos = () => {
-        switch(match.params.filter || "all"){
-            case "all":{
-                return todos;
-            }
-            case "completed":{
-                return todos.filter(todo => todo.completed);
-            }
-            case "active":{
-                return todos.filter(todo => !todo.completed);
-            }
-            default:
-                return todos;
-        }
-    };
+    const visibleTodos = getVisibleTodos(state, match.params.filter);
     return {
-        getVisibleTodos
+        visibleTodos
     }
 };
 

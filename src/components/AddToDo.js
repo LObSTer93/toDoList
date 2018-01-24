@@ -41,4 +41,4 @@ AddToDo.propTypes = {
 export default connect(
         null,
         {addTodo: actions.addTodo}
-    )(AddToDo)
+)(AddToDo)
